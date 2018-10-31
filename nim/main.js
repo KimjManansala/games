@@ -42,15 +42,22 @@ function restart(evt) {
 }
 
 function takePebble(evt) {
-    console.info("Pebble will be taken")
     const target1 = evt.target
-    if (target1.id !== 'button-1' || target1.id !== 'button-2' || target1.id !== 'button-3') return
+    console.info("The takePebble function is performing")
+
     if (theGame.pebbles > 0) {
         if (target1.id === 'button-1') {
             console.info('button-1 has been clicked')
             if (theGame.pebbles >= 1) {
                 theGame.pebbles--;
                 console.info(theGame.pebbles)
+                if (theGame.pebbles !== 0) {
+                    changeTurn(theGame.playerTurn)
+                    console.info(theGame.playerTurn)
+                    renderPlayerTurn()
+                } else {
+                    renderWinner()
+                }
             } else {
                 console.error('Not enough pebbles to take')
                 return
@@ -61,6 +68,13 @@ function takePebble(evt) {
             if (theGame.pebbles >= 2) {
                 theGame.pebbles -= 2;
                 console.info(theGame.pebbles)
+                if (theGame.pebbles !== 0) {
+                    changeTurn(theGame.playerTurn)
+                    console.info(theGame.playerTurn)
+                    renderPlayerTurn()
+                } else {
+                    renderWinner()
+                }
             } else {
                 console.error('Not enough pebbles to take')
                 return
@@ -71,6 +85,13 @@ function takePebble(evt) {
             if (theGame.pebbles >= 3) {
                 theGame.pebbles -= 3;
                 console.info(theGame.pebbles)
+                if (theGame.pebbles !== 0) {
+                    changeTurn(theGame.playerTurn)
+                    console.info(theGame.playerTurn)
+                    renderPlayerTurn()
+                } else {
+                    renderWinner()
+                }
             } else {
                 console.error('Not enough pebbles to take')
                 return
@@ -79,13 +100,7 @@ function takePebble(evt) {
         }
         renderRemovePebble(theGame.pebbles)
         removeButton(theGame.pebbles)
-        if (theGame.pebbles !== 0) {
-            changeTurn(theGame.playerTurn)
-            console.info(theGame.playerTurn)
-            renderPlayerTurn()
-        } else {
-            renderWinner()
-        }
+        
     }
 
 }
