@@ -6,6 +6,12 @@
     display: inline-block;
 }
 
-.pebble:first-child {
-    background-color: #ffb600
+h4{
+    margin-bottom: 10px;
+}
+
+#player-turn{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
