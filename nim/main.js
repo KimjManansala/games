@@ -44,7 +44,7 @@ function restart(evt) {
 function takePebble(evt) {
     console.info("Pebble will be taken")
     const target1 = evt.target
-    if (!target1) return
+    if (target1.id !== 'button-1' || target1.id !== 'button-2' || target1.id !== 'button-3') return
     if (theGame.pebbles > 0) {
         if (target1.id === 'button-1') {
             console.info('button-1 has been clicked')
