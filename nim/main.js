@@ -5,18 +5,19 @@ let theGame = {
 
 
 
-const content = document.getElementById('content');
+const content = document.getElementById('content')
 document.addEventListener('DOMContentLoaded', init(theGame))
-document.getElementById('take-button').addEventListener('click', takePebble)
+content.addEventListener('click', takePebble)
+content.addEventListener('click', restart)
 
 
 // Initialize the game
 function init(theGame) {
     console.info("Game has initialized")
-    content.innerHTML = renderGame(theGame);
+    content.innerHTML = renderGame(theGame)
     console.info('RenderGame function has initialized')
-    document.getElementById('container-pebbles').innerHTML = renderPebbles();
-    
+    document.getElementById('container-pebbles').innerHTML = renderPebbles()
+
 }
 
 
@@ -26,7 +27,19 @@ function changeTurn(player) {
 }
 
 
+function restart(evt) {
+    const targetRestart = evt.target
+    if (targetRestart.id === 'restart') {
+        theGame = {
+            playerTurn: 'Player 1',
+            pebbles: 16
+        }
+        content.innerHTML = renderGame(theGame)
+        console.info('RenderGame function has initialized')
+        document.getElementById('container-pebbles').innerHTML = renderPebbles()
 
+    }
+}
 
 function takePebble(evt) {
     console.info("Pebble will be taken")
@@ -70,19 +83,20 @@ function takePebble(evt) {
             changeTurn(theGame.playerTurn)
             console.info(theGame.playerTurn)
             renderPlayerTurn()
-        }else{
+        } else {
             renderWinner()
         }
     }
 
 }
-function removeButton (pebble){
-    if(pebble < 3) document.getElementById('button-3').style.display = 'none'
-    if(pebble < 2) document.getElementById('button-2').style.display = 'none'   
+
+function removeButton(pebble) {
+    if (pebble < 3) document.getElementById('button-3').style.display = 'none'
+    if (pebble < 2) document.getElementById('button-2').style.display = 'none'
 }
 
 
-function checkIfWinner(pebble){
+function checkIfWinner(pebble) {
     return pebble === 0
 
 }
@@ -138,7 +152,7 @@ function renderGame(game) {
                         <button type="button" class="btn btn-dark" id='button-2'>2</button>
                         <button type="button" class="btn btn-dark" id='button-3'>3</button>
                     </div>
-                <button class="btn btn-primary" style="width: 115px;">restart</button>
+                <button class="btn btn-primary" id='restart' style="width: 115px;">restart</button>
             </div>
         </div>
     `

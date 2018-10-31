@@ -76,7 +76,6 @@ function byId (id) {
   function resetGame () {
     theGame = newGameState()
     renderGame()
-  }
   
   function takeTurn (player, boxId) {
     // defensive
